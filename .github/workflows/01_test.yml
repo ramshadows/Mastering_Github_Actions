@@ -17,7 +17,7 @@ jobs:
           node-version: 18
 
       - name: Install Project Dependencies
-        run: npm clean-install # 
+        run: npm ic # 
 
       - name: Run test
         run: npm test
