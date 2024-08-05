@@ -23,6 +23,7 @@ jobs:
         run: cd GitHub_Actions/01_gh_actions_react_app && npm test
 
   deploy: # 2nd Job Name
+    needs: test # you can specify multipe jobs i.e [job1, job2, job3]
     runs-on: ubuntu-latest  # Enviroment
     steps:
       - name: Get Code
