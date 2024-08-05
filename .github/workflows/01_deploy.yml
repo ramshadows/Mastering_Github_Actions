@@ -1,0 +1,43 @@
+name: Deploy Project
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  test: # 1st Job Name
+    runs-on: ubuntu-latest  # Enviroment
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4 
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Project Dependencies
+        run: cd GitHub_Actions/01_gh_actions_react_app && npm ci # 
+
+      - name: Run test
+        run: cd GitHub_Actions/01_gh_actions_react_app && npm test
+
+  deploy: # 2nd Job Name
+    runs-on: ubuntu-latest  # Enviroment
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4 
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Project Dependencies
+        run:  npm ci # 
+
+      - name: Build Project
+        run:  npm run build
+
+      - name: Deploy
+        run: echo "Deploying project... "
